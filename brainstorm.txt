@@ -1,0 +1,7 @@
+BRAINSTORM:
+
+---------------------
+1. Bank (terminal or OOP)
+2. Text & turn based rpg (definitely terminal and OOP)
+3. Make a successful input and error handler! (terminal)
+4. 
