@@ -135,8 +135,14 @@ public class Main {
 			//------------------------------------start of second function------------------------------------------------
 			else if (mainMenu.equalsIgnoreCase("2") || mainMenu.equalsIgnoreCase("write") || mainMenu.equalsIgnoreCase("read")) { //takes the input and makes it a boolean
 					//second program capability that reads and writes to files!!!!
-				say("Please enter the name used while creating the file: ");
-				String transplantName = input.nextLine();
+				
+				//-------making a temp reroute------------------
+				System.err.println("This part of the program is not yet complete, rerouting you...");
+				say(" ");
+				continue;
+				//-----------------------------------------------
+				/*say("Please enter the name used while creating the file: ");
+				String transplantName = input.nextLine();*/
 			}
 
 				
