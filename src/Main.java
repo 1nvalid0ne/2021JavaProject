@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class Main {
 		int start = 1;
 		//establishing functions
 		String filePath = System.getProperty("user.dir");//reads the program/s file path
+		FileInputStream filePull = null; //making a file reader and opener for the second function of the program
 		Date today = new Date();//allows for the system time to be read
 		SimpleDateFormat dateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//date format that reads date and time
 		SimpleDateFormat dateOnly = new SimpleDateFormat("dd-MM-yyyy"); //makes a date format that only reads the date
@@ -71,8 +73,8 @@ public class Main {
 									say("You can find the file here: " + newFile.getAbsolutePath());//prints the file path
 									//writing to the generated file
 									bw.write("Information: "); bw.newLine(); bw.write("Name: " + seshNameVar); bw.newLine(); bw.write("Age: " + ageVar); bw.newLine(); bw.write("Correct Info? " + ch1Var);
-									bw.write("--------------------------------------------");
-									bw.flush();bw.close(); //closes as flushes the file
+									bw.newLine(); bw.write("--------------------------------------------");
+									bw.flush();bw.close(); //closes and flushes the file
 									//done writing to the file
 								}
 							}catch(Exception e) {
@@ -136,13 +138,58 @@ public class Main {
 			else if (mainMenu.equalsIgnoreCase("2") || mainMenu.equalsIgnoreCase("write") || mainMenu.equalsIgnoreCase("read")) { //takes the input and makes it a boolean
 					//second program capability that reads and writes to files!!!!
 				
+				say("Before you continue, please make sure you know the name on the file you want to write to \n"
+						+ "Or you can generate a file using the alternate operation! \n"
+						+ "---------------------------------------------- \n"
+						+ " ");//general start messages 
+				say("Now, please enter the name of the file below: ");//asking the user for a name of a file 
+					String namePullReq = input.nextLine();//taking the input
+					File pulledFile = new File(filePath + namePullReq + ".md");
+				say("O.K! Choose an option below: \n"
+						+ "1. Read \n"
+						+ "2. Write");
+					String funcChVar2 = input.nextLine();
+						//------------------------------------first real operation for the second function----------------------------
+						if(funcChVar2.equals("1") || funcChVar2.equalsIgnoreCase("read")) {//if statement for the menu input
+							say("File Reader| Main: ");//creating a section header for the header
+							say("Reading file(s) named: " + namePullReq);
+								String[] filePuller = logFolder.list(new FilenameFilter() {
+									public boolean accept(File filePath, String name) {
+										return name.contains(namePullReq);
+									
+									}
+								});
+								
+								
+						}
+						else if(funcChVar2.equals("2") || funcChVar2.equalsIgnoreCase("write")) {
+							
+						}
+						else { //default response to an unknown input
+							System.err.println("Whoops");
+							say("Something went wrong!");
+							//created a reset choice for the user to restart the program
+							say("Do you want to reload the program? (y/n)"); //asks the user if they want to reload the program
+							String resetVar = input.nextLine();
+								if (resetVar.equalsIgnoreCase("yes") || resetVar.equalsIgnoreCase("y")) { //takes the input and makes it a boolean
+									continue;//loops
+								}
+								else if(resetVar.equalsIgnoreCase("no") || resetVar.equalsIgnoreCase("n")) {
+									start = 0;//stops
+								}
+								else {
+									System.err.println("Whoops! We encountered a mistake!"
+											+ "Restarting the program.....");
+									continue;//loops
+						}
+					}// funcChVar2 main else statement close
+				
 				//-------making a temp reroute------------------
 				System.err.println("This part of the program is not yet complete, rerouting you...");
 				say(" ");
 				continue;
 				//-----------------------------------------------
-				/*say("Please enter the name used while creating the file: ");
-				String transplantName = input.nextLine();*/
+				
 			}
 
 				
